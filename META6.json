@@ -1,0 +1,16 @@
+{
+  "name": "whoosh",
+  "description": "Finally, a command line shell for the 20s.",
+  "version": "0.1.0",
+  "perl": "6.*",
+  "auth": "github:DeflatedPickle",
+  "depends": [],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+    "whoosh": "lib/whoosh.pm6"
+  },
+  "resources": [],
+  "license": "MIT",
+  "source-url": "https://github.com/DeflatedPickle/whoosh"
+}

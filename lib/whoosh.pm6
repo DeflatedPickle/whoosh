@@ -1,9 +1,9 @@
 use v6;
 
 loop {
-    my $prompt = "~> ";
+    my $prompt = "~>";
     # Get the user input and format it
-    my ($cmd, @args) = split ' ', trim chomp prompt $prompt;
+    my ($cmd, @args) = split ' ', trim chomp prompt $prompt~' ';
 
     # Run the process
     my $proc = Proc::Async.new: $cmd, |@args;
@@ -12,3 +12,4 @@ loop {
     # Try to await the process
     try await $done;
 }
+
