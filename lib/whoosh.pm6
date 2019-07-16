@@ -7,7 +7,15 @@ my $prompt = colored "~>", "green";
 
 my @valid_cmds = Empty;
 # TODO: Display the process of this loading on the right side of the shell
-my $cmds = start {race for split(';', %*ENV<Path>).race {try for find dir => $_, keep-going => True {if $_.contains: <.exe> {@valid_cmds.append: split('.', split('\\', $_.path).tail).head}}}}
+my $cmds = start {
+    for split(';', %*ENV<Path>) {
+        try for (find dir => $_, keep-going => True) {
+            if .contains: <.exe> {
+                @valid_cmds.append: split('.', split('\\', .path).tail).head
+            }
+        }
+    }
+}
 
 my %built-in = Map.new: 'cd' => sub (*@args) {
     if @args.elems > 0 {
@@ -68,4 +76,3 @@ my $shell = start {
     }
 }
 await $cmds, $shell;
-await $shell;
